@@ -1,19 +1,27 @@
-import NotesAPI from "./NotesAPI.js";
-import NotesView from "./NotesView.js";
+// import NotesAPI from "./NotesAPI.js";
+// import NotesView from "./NotesView.js";
 
-const app = document.getElementById("app");
-const view = new NotesView(app, {
-  onNoteSelect() {
-    console.log("Note has been selected");
-  },
+import App from "./App.js";
 
-  onNoteAdd() {
-    console.log("Note has been added");
-  },
+const root = document.getElementById("app");
+const app = new App(root);
+// const view = new NotesView(app, {
+//   onNoteSelect(id) {
+//     console.log("Note has been selected" + id);
+//   },
 
-  onNoteEdit(newTitle, newBody) {
-    console.log(newTitle + " " + newBody);
-  },
-});
+//   onNoteAdd() {
+//     console.log("Note has been added");
+//   },
 
-console.log(NotesAPI.getAllNotes());
+//   onNoteDelete(id) {
+//     console.log("Note Deleted " + id);
+//   },
+
+//   onNoteEdit(newTitle, newBody) {},
+// });
+
+// const notes = NotesAPI.getAllNotes();
+
+// view.updateNoteList(notes);
+// view.updateActiveNote(notes[0]);
