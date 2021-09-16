@@ -46,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _App_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.js */ \"./src/App.js\");\n// import NotesAPI from \"./NotesAPI.js\";\r\n// import NotesView from \"./NotesView.js\";\r\n\r\n\r\n\r\nconst root = document.getElementById(\"app\");\r\nconst app = new _App_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](root);\r\n// const view = new NotesView(app, {\r\n//   onNoteSelect(id) {\r\n//     console.log(\"Note has been selected\" + id);\r\n//   },\r\n\r\n//   onNoteAdd() {\r\n//     console.log(\"Note has been added\");\r\n//   },\r\n\r\n//   onNoteDelete(id) {\r\n//     console.log(\"Note Deleted \" + id);\r\n//   },\r\n\r\n//   onNoteEdit(newTitle, newBody) {},\r\n// });\r\n\r\n// const notes = NotesAPI.getAllNotes();\r\n\r\n// view.updateNoteList(notes);\r\n// view.updateActiveNote(notes[0]);\r\n\n\n//# sourceURL=webpack://note-taking-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _App_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.js */ \"./src/App.js\");\n\r\n\r\nconst root = document.getElementById(\"app\");\r\nconst app = new _App_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](root);\r\n\n\n//# sourceURL=webpack://note-taking-app/./src/index.js?");
 
 /***/ })
 
