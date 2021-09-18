@@ -1,6 +1,9 @@
 export default class NotesView {
   //
   constructor(
+    // root refers to a div with a class of "notes" and id "app". When application is initialised
+    // the whole div is going to be passed to root.
+    // The other parameter is an object that is destructurised
     root,
     { onNoteSelect, onNoteAdd, onNoteEdit, onNoteDelete } = {}
   ) {
@@ -26,10 +29,15 @@ export default class NotesView {
     const inpBody = this.root.querySelector(".notes__body");
     const notesListEl = this.root.querySelector("notes__list");
 
+    // When addButton is clicked, it will add a new note.
     btnAddNote.addEventListener("click", () => {
       this.onNoteAdd();
     });
 
+    // When title or body input field is left, it will update the note that is being currently edited.
+    // It takes both and passes it as a parameter to onNoteEdit function that calls
+    // another function that is responsible for saving new notes into a localStorage
+    // and refreshing it.
     [inpTitle, inpBody].forEach(inputField => {
       inputField.addEventListener("blur", () => {
         const updatedTitle = inpTitle.value.trim();
@@ -42,7 +50,9 @@ export default class NotesView {
     this.updateNotePreviewVisibility(false);
   }
 
+  // This method creates an HTML that will crete an HTMl for a sidebar.
   _createListItemHTML(id, title, body, updated) {
+    // This is for shorting out the body length, so the whole text doesn't render out.
     const MAX_BODY_LENGTH = 60;
 
     return `
@@ -57,7 +67,10 @@ export default class NotesView {
     `;
   }
 
+  // This method is responsible for updating noteList. It takes an array of notes
+  // as a parameter from NotesAPI
   updateNoteList(notes) {
+    // it takes an element with a note list where we can append a new note.
     const notesListContainer = this.root.querySelector(".notes__list");
 
     // Empty list
@@ -71,6 +84,8 @@ export default class NotesView {
         note.body,
         new Date(note.updated)
       );
+
+      // Inserts HTML before the end of the container (one after another)
       notesListContainer.insertAdjacentHTML("beforeend", html);
     }
 
@@ -82,6 +97,8 @@ export default class NotesView {
           this.onNoteSelect(noteListItem.dataset.noteId);
         });
 
+        // When user doubleclicks the note, it will ask if user is sure of it and
+        // if confirmed it will delete
         noteListItem.addEventListener("dblclick", () => {
           const doDelete = confirm(
             "Are you sure you want to delete this note?"
@@ -94,19 +111,24 @@ export default class NotesView {
       });
   }
 
+  // This method id responsible for showing the note that we clicked on. It takes
+  // a note as a param. It also selects the note visually on a sidebar.
   updateActiveNote(note) {
     this.root.querySelector(".notes__title").value = note.title;
     this.root.querySelector(".notes__body").value = note.body;
 
+    // If any of notes from a sidebar have that class, the class is being removed
     this.root.querySelectorAll(".notes__list-item").forEach(noteListItem => {
       noteListItem.classList.remove("notes__list-item--selected");
     });
 
+    // Class is assigned to an element with the id
     this.root
       .querySelector(`.notes__list-item[data-note-id="${note.id}"]`)
       .classList.add("notes__list-item--selected");
   }
 
+  // Hides the note input fields if visible flag is false.
   updateNotePreviewVisibility(visible) {
     this.root.querySelector(".notes__preview").style.visibility = visible
       ? "visible"
